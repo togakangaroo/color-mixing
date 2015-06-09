@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CSS Color Mixing</title>
+	<style>
+		body {
+		  display: flex;
+		  padding: 1em;
+		}
+
+		svg {
+		  width: 30rem;
+		  height: 30rem;
+		  margin: 0 2rem;
+		}
+
+		.screen {
+		  background: black;
+		}
+
+		.screen circle {
+		  mix-blend-mode: screen;
+		}
+
+		fieldset {
+		  display: flex;
+		  flex-direction: column;
+		}
+		fieldset label {
+		  display: flex;
+		}
+		fieldset label .label {
+		  width: 4em;
+		}
+		fieldset label input {
+		  width: 25rem;
+		}
+	</style>
+</head>
+<body>
+	<svg class="screen" width="100" height="100" viewbox="0 0 8 8">
+	  <circle class="red" fill="rgb(255, 0, 0)" cx="4" cy="3" r="2" />
+	  <circle class="green" fill="rgb(0, 255, 0)" cx="3" cy="5" r="2" />
+	  <circle class="blue" fill="rgb(0, 0, 255)" cx="5" cy="5" r="2" />
+	</svg>
+
+	<fieldset>
+	  <label>
+	    <span class="label">Red</span>
+	    <input type="range" min=0 max=255 value=255 step=1 data-target=".red" data-fillPattern="rgb(X, 0, 0)"/>
+	    <span class="value"></span>
+	  </label>
+	  <label>
+	    <span class="label">Green</span>
+	    <input type="range" min=0 max=255 value=255 step=1 data-target=".green" data-fillPattern="rgb(0, X, 0)" />
+	    <span class="value"></span>
+	  </label>
+	  <label>
+	    <span class="label">Blue</span>
+	    <input type="range" min=0 max=255 value=255 step=1 data-target=".blue" data-fillPattern="rgb(0, 0, X)" />
+	    <span class="value"></span>
+	  </label>
+	</fieldset>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
+	!function() {
+		'use strict'
+
+		$('input[type=range]').on('change', function(e) {
+			var $inpt = $(e.target);
+			$inpt.next('.value').text($inpt.val());
+			console.log($inpt.data('fillpattern'));
+			$($inpt.data('target'), 'svg')
+			.attr('fill', 
+			      $inpt.data('fillpattern').replace('X', $inpt.val())
+			);
+		}).trigger('change');
+	}()
+	</script>
+</body>
+</html>

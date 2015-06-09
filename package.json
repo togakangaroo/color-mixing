@@ -1,0 +1,28 @@
+{
+  "name": "css-color-mixing",
+  "version": "1.0.0",
+  "description": "A simple demonstration of how mixing rgb colored light works",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/togakangaroo/color-mixing.git"
+  },
+  "keywords": [
+    "colors",
+    "demo",
+    "color",
+    "mixing"
+  ],
+  "author": "gmauer@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/togakangaroo/color-mixing/issues"
+  },
+  "homepage": "https://github.com/togakangaroo/color-mixing#readme",
+  "dependencies": {
+    "express": "^4.12.4"
+  }
+}
