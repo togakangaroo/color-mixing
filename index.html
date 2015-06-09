@@ -80,20 +80,18 @@
 		Thanks to <a href="http://codepen.io/bennettfeely/pen/KDkCj?editors=110">Bennet Feely<a> for showing the basics of color blending.
 	</footer>
 
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
 	!function() {
 		'use strict'
-
-		$('input[type=range]').on('change', function(e) {
-			var $inpt = $(e.target);
-			$inpt.next('.value').text($inpt.val());
-			console.log($inpt.data('fillpattern'));
-			$($inpt.data('target'), 'svg')
-			.attr('fill', 
-			      $inpt.data('fillpattern').replace('X', $inpt.val())
-			);
-		}).trigger('change');
+		Array.prototype.slice.call(document.querySelectorAll('input[type=range]')).forEach(function(input) {
+			input.addEventListener('change', resetCircle);
+			resetCircle();
+			function resetCircle() {
+				input.nextElementSibling.textContent = input.value;
+				var circle = document.querySelector(input.dataset.target);
+				circle.attributes.fill.value = input.dataset.fillpattern.replace('X', input.value);
+			}
+		});
 	}()
 	</script>
 </body>
