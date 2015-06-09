@@ -18,11 +18,21 @@
 			padding: 0 1em;
 			flex: 1;
 		}
+		main>figure {
+			display: flex;
+			flex-direction: column;
+			width: 30rem;
+			height: 30rem;
+			min-width: 12em;
+		}
+		main>figure>footer {
+			text-align: center;
+		}
 
 		svg {
-		  width: 30rem;
-		  height: 30rem;
 		  margin: 0 2rem;
+		  width: 100%;
+		  height: 100%;
 		}
 
 		.screen {
@@ -75,29 +85,32 @@
 		</aside>
 	</header>
 	<main>
-		<svg class="screen" width="100" height="100" viewbox="0 0 8 8">
-		  <circle class="red" fill="rgb(255, 0, 0)" cx="4" cy="3" r="2" />
-		  <circle class="green" fill="rgb(0, 255, 0)" cx="3" cy="5" r="2" />
-		  <circle class="blue" fill="rgb(0, 0, 255)" cx="5" cy="5" r="2" />
-		</svg>
+		<figure>
+			<svg class="screen" width="100" height="100" viewbox="0 0 8 8">
+			  <circle class="red" fill="rgb(255, 0, 0)" cx="4" cy="3" r="2" />
+			  <circle class="green" fill="rgb(0, 255, 0)" cx="3" cy="5" r="2" />
+			  <circle class="blue" fill="rgb(0, 0, 255)" cx="5" cy="5" r="2" />
+			</svg>
+			<footer></footer>
+		</figure>
 
 		<fieldset>
 		  <label class="red">
 		  	<img src="flashlight.svg" />
 		    <span class="label">Red</span>
-		    <input type="range" min=0 max=255 value=255 step=1 data-target="circle.red" data-fillPattern="rgb(X, 0, 0)"/>
+		    <input type="range" min=0 max=255 value=255 step=1 data-target="circle.red" data-fillPattern="rgb(X, 0, 0)" name="red" />
 		    <span class="value"></span>
 		  </label>
 		  <label class="green">
 		  	<img src="flashlight.svg" />
 		    <span class="label">Green</span>
-		    <input type="range" min=0 max=255 value=255 step=1 data-target="circle.green" data-fillPattern="rgb(0, X, 0)" />
+		    <input type="range" min=0 max=255 value=255 step=1 data-target="circle.green" data-fillPattern="rgb(0, X, 0)" name="green" />
 		    <span class="value"></span>
 		  </label>
 		  <label class="blue">
 		  	<img src="flashlight.svg" />
 		    <span class="label">Blue</span>
-		    <input type="range" min=0 max=255 value=255 step=1 data-target="circle.blue" data-fillPattern="rgb(0, 0, X)" />
+		    <input type="range" min=0 max=255 value=255 step=1 data-target="circle.blue" data-fillPattern="rgb(0, 0, X)" name="blue" />
 		    <span class="value"></span>
 		  </label>
 		</fieldset>
@@ -110,6 +123,7 @@
 	<script>
 	!function() {
 		'use strict'
+		var currentColors = {};
 		Array.prototype.slice.call(document.querySelectorAll('input[type=range]')).forEach(function(input) {
 			input.addEventListener('change', resetCircle);
 			resetCircle();
@@ -117,8 +131,14 @@
 				input.nextElementSibling.textContent = input.value;
 				var circle = document.querySelector(input.dataset.target);
 				circle.attributes.fill.value = input.dataset.fillpattern.replace('X', input.value);
+				resetRGBString(input.name, input.value)
 			}
 		});
+		function resetRGBString(color, value) {
+			currentColors[color] = value;
+			document.querySelector('main>figure>footer').textContent = 
+				"rgb("+currentColors.red+", "+currentColors.green+", "+currentColors.blue+");"
+		}
 	}()
 	</script>
 </body>
