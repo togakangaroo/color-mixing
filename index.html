@@ -7,6 +7,16 @@
 		body {
 		  display: flex;
 		  padding: 1em;
+		  flex-direction: column;
+		  min-height: 100vh;
+		}
+		* {
+			box-sizing: border-box;
+		}
+		main {
+			display: flex;
+			padding: 0 1em;
+			flex: 1;
 		}
 
 		svg {
@@ -24,8 +34,6 @@
 		}
 
 		fieldset {
-		  display: flex;
-		  flex-direction: column;
 		}
 		fieldset label {
 		  display: flex;
@@ -39,29 +47,38 @@
 	</style>
 </head>
 <body>
-	<svg class="screen" width="100" height="100" viewbox="0 0 8 8">
-	  <circle class="red" fill="rgb(255, 0, 0)" cx="4" cy="3" r="2" />
-	  <circle class="green" fill="rgb(0, 255, 0)" cx="3" cy="5" r="2" />
-	  <circle class="blue" fill="rgb(0, 0, 255)" cx="5" cy="5" r="2" />
-	</svg>
+	<header>
+		<p> A simple demo of how Red-Green-Blue color mixing works. </p>
+	</header>
+	<main>
+		<svg class="screen" width="100" height="100" viewbox="0 0 8 8">
+		  <circle class="red" fill="rgb(255, 0, 0)" cx="4" cy="3" r="2" />
+		  <circle class="green" fill="rgb(0, 255, 0)" cx="3" cy="5" r="2" />
+		  <circle class="blue" fill="rgb(0, 0, 255)" cx="5" cy="5" r="2" />
+		</svg>
 
-	<fieldset>
-	  <label>
-	    <span class="label">Red</span>
-	    <input type="range" min=0 max=255 value=255 step=1 data-target=".red" data-fillPattern="rgb(X, 0, 0)"/>
-	    <span class="value"></span>
-	  </label>
-	  <label>
-	    <span class="label">Green</span>
-	    <input type="range" min=0 max=255 value=255 step=1 data-target=".green" data-fillPattern="rgb(0, X, 0)" />
-	    <span class="value"></span>
-	  </label>
-	  <label>
-	    <span class="label">Blue</span>
-	    <input type="range" min=0 max=255 value=255 step=1 data-target=".blue" data-fillPattern="rgb(0, 0, X)" />
-	    <span class="value"></span>
-	  </label>
-	</fieldset>
+		<fieldset>
+		  <label>
+		    <span class="label">Red</span>
+		    <input type="range" min=0 max=255 value=255 step=1 data-target=".red" data-fillPattern="rgb(X, 0, 0)"/>
+		    <span class="value"></span>
+		  </label>
+		  <label>
+		    <span class="label">Green</span>
+		    <input type="range" min=0 max=255 value=255 step=1 data-target=".green" data-fillPattern="rgb(0, X, 0)" />
+		    <span class="value"></span>
+		  </label>
+		  <label>
+		    <span class="label">Blue</span>
+		    <input type="range" min=0 max=255 value=255 step=1 data-target=".blue" data-fillPattern="rgb(0, 0, X)" />
+		    <span class="value"></span>
+		  </label>
+		</fieldset>
+	</main>	
+
+	<footer>
+		Thanks to <a href="http://codepen.io/bennettfeely/pen/KDkCj?editors=110">Bennet Feely<a> for showing the basics of color blending.
+	</footer>
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
