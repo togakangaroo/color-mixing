@@ -34,21 +34,42 @@
 		}
 
 		fieldset {
+		  height: 30rem;
 		}
-		fieldset label {
+		label {
 		  display: flex;
+		  padding: 5px;
+		  margin: 5px 0;
 		}
-		fieldset label .label {
+		label .label {
 		  width: 4em;
 		}
-		fieldset label input {
+		label input {
 		  width: 25rem;
+		}
+		label img {
+			width: 100px;
+			height: 50px;
+		}
+		label.red {
+			background-color: rgba(255, 0, 0, 0.5);
+		}
+		label.green {
+			background-color: rgba(0, 255, 0, 0.5);
+		}
+		label.blue {
+			background-color: rgba(0, 0, 255, 0.5);
+		}
+		label span {
+			display: flex;
+			margin: auto;
+			padding: 5px;	
 		}
 	</style>
 </head>
 <body>
 	<header>
-		<p> A simple demo of how Red-Green-Blue color mixing works. </p>
+		<p>A simple demo of how Red-Green-Blue color mixing works. Try adjusting the sliders to see the sort of color that would be generaged with this rgb combination</p>
 	</header>
 	<main>
 		<svg class="screen" width="100" height="100" viewbox="0 0 8 8">
@@ -58,19 +79,22 @@
 		</svg>
 
 		<fieldset>
-		  <label>
+		  <label class="red">
+		  	<img src="flashlight.svg" />
 		    <span class="label">Red</span>
-		    <input type="range" min=0 max=255 value=255 step=1 data-target=".red" data-fillPattern="rgb(X, 0, 0)"/>
+		    <input type="range" min=0 max=255 value=255 step=1 data-target="circle.red" data-fillPattern="rgb(X, 0, 0)"/>
 		    <span class="value"></span>
 		  </label>
-		  <label>
+		  <label class="green">
+		  	<img src="flashlight.svg" />
 		    <span class="label">Green</span>
-		    <input type="range" min=0 max=255 value=255 step=1 data-target=".green" data-fillPattern="rgb(0, X, 0)" />
+		    <input type="range" min=0 max=255 value=255 step=1 data-target="circle.green" data-fillPattern="rgb(0, X, 0)" />
 		    <span class="value"></span>
 		  </label>
-		  <label>
+		  <label class="blue">
+		  	<img src="flashlight.svg" />
 		    <span class="label">Blue</span>
-		    <input type="range" min=0 max=255 value=255 step=1 data-target=".blue" data-fillPattern="rgb(0, 0, X)" />
+		    <input type="range" min=0 max=255 value=255 step=1 data-target="circle.blue" data-fillPattern="rgb(0, 0, X)" />
 		    <span class="value"></span>
 		  </label>
 		</fieldset>
